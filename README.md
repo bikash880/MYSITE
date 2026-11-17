@@ -4,6 +4,34 @@ A full-stack, mobile-first personal portfolio with a secure admin panel and a RE
 
 **Stack:** Next.js 15 (App Router) · TypeScript · Tailwind CSS v4 · **MongoDB Atlas** (data, auth and file storage via GridFS) · Framer Motion · Zod · Tiptap · PWA
 
+## Screenshots
+
+### Home — dark & light mode
+Pull the lamp in the top-right corner to switch themes.
+
+| Dark | Light |
+|---|---|
+| ![Home page in dark mode](docs/screenshots/home-dark.png) | ![Home page in light mode](docs/screenshots/home-light.png) |
+
+### Projects & About
+
+| Projects | About |
+|---|---|
+| ![Projects page](docs/screenshots/projects.png) | ![About page](docs/screenshots/about.png) |
+
+### Mobile
+
+<p>
+  <img src="docs/screenshots/mobile-home.png" alt="Home page on a phone (dark mode)" width="260" />
+  &nbsp;&nbsp;
+  <img src="docs/screenshots/mobile-projects.png" alt="Projects page on a phone (light mode)" width="260" />
+</p>
+
+### Admin panel — secure login
+Password + email verification code; only the registered admin can sign in.
+
+![Admin login page](docs/screenshots/admin-login.png)
+
 ## Features
 
 **Public site** (Home · About · Projects · Certificates · Resume · Contact): Home is a sequence of portfolio sections (hero, about snapshot with stats, selected projects, experience timeline, featured certificates, resume call-to-action). About covers bio, facts, skill bars and experience/education timelines. Projects has a category filter and detail pages. Certificates is a filterable gallery with a detail viewer and "Verify credential" links. Resume is generated from your data, with a scroll-spy table of contents, Download PDF and a clean **Print / Save as PDF** layout. Contact saves its form to MongoDB. Also: light/dark mode, smooth scrolling, SEO (metadata, Open Graph image, JSON-LD, sitemap, robots), ISR, loading skeletons and empty states.
