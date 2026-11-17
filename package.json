@@ -1,0 +1,58 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "db:setup": "node --env-file-if-exists=.env.local scripts/setup-db.mjs",
+    "db:seed": "node --env-file-if-exists=.env.local scripts/seed.mjs",
+    "migrate:supabase": "node --env-file-if-exists=.env.local scripts/migrate-from-supabase.mjs",
+    "admin:password": "node --env-file-if-exists=.env.local scripts/set-admin-password.mjs",
+    "mail:test": "node --env-file-if-exists=.env.local scripts/test-email.mjs"
+  },
+  "dependencies": {
+    "@tiptap/extension-image": "^2.27.3",
+    "@tiptap/extension-link": "^2.27.3",
+    "@tiptap/extension-placeholder": "^2.27.3",
+    "@tiptap/pm": "^2.27.3",
+    "@tiptap/react": "^2.27.3",
+    "@tiptap/starter-kit": "^2.27.3",
+    "bcryptjs": "^3.0.3",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.43.0",
+    "jose": "^5.10.0",
+    "lucide-react": "^1.72.0",
+    "mongodb": "^6.22.0",
+    "next": "^15.5.29",
+    "next-themes": "^0.4.6",
+    "nodemailer": "^6.10.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sanitize-html": "^2.18.2",
+    "server-only": "^0.0.1",
+    "sonner": "^2.0.8",
+    "tailwind-merge": "^3.7.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.7",
+    "@tailwindcss/postcss": "^4.3.5",
+    "@tailwindcss/typography": "^0.5.20",
+    "@types/node": "^22.20.5",
+    "@types/nodemailer": "^6.4.24",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/sanitize-html": "^2.16.2",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.29",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^6.0.3"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}
