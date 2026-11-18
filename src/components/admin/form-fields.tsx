@@ -6,6 +6,7 @@ import { FieldError, Input, Label, Select, Switch, Textarea } from "@/components
 import { Skeleton } from "@/components/ui/misc";
 import type { FieldConfig } from "@/lib/admin/resources";
 import { cn } from "@/lib/utils";
+import { LocationField } from "./fields/location-field";
 import { TagInput } from "./fields/tag-input";
 import { UploadField } from "./fields/upload-field";
 
@@ -126,6 +127,18 @@ export function FormFields({
           case "richtext":
             control = (
               <RichTextEditor value={String(v ?? "")} onChange={(html) => onChange(f.name, html)} folder={f.folder} invalid={Boolean(err)} />
+            );
+            break;
+          case "location":
+            control = (
+              <LocationField
+                id={id}
+                value={String(v ?? "")}
+                onChange={(text) => onChange(f.name, text)}
+                invalid={Boolean(err)}
+                placeholder={f.placeholder}
+                describedBy={describedBy}
+              />
             );
             break;
           case "color":

@@ -38,7 +38,7 @@ Password + email verification code; only the registered admin can sign in.
 
 **Admin panel (`/admin`)**: email/password login for admin accounts stored in MongoDB. It has a dashboard with stats (projects, certificates, messages, unread, site visits) and full CRUD for profile, skills, experience, education, projects (rich-text details) and certificates (with image upload). There's also a messages inbox (read/unread/delete/reply) and site settings (title, SEO, theme colour). Images and files are stored in MongoDB (GridFS). Every form is validated with Zod on both client and server, and actions show toast notifications. The layout has a collapsible sidebar on desktop, a drawer on mobile, and turns tables into cards on small screens.
 
-**PWA**: web manifest, generated app icons (regular and maskable), service worker with offline fallback, and an "Install app" button.
+**PWA**: web manifest, generated app icons (regular and maskable), service worker with offline fallback — installable from the browser menu ("Install app" / "Add to Home Screen").
 
 ## Architecture
 
@@ -82,7 +82,6 @@ scripts/
   setup-db.mjs            Indexes + default profile/settings     (npm run db:setup)
   seed.mjs                Demo content for empty collections     (npm run db:seed)
   set-admin-password.mjs  Server-side admin tools: status, AUTH_SECRET, password reset, re-open registration (npm run admin:password)
-  migrate-from-supabase.mjs  One-off import of old Supabase data (npm run migrate:supabase)
 src/
   app/
     (site)/               Public pages
@@ -135,15 +134,6 @@ Open http://localhost:3000 for the site and http://localhost:3000/admin/register
 Other scripts: `npm run build`, `npm start`, `npm run lint`, `npm run typecheck`. Forgot your password? On the server run `npm run admin:password -- "new-password"` — it replaces the hash and signs out every session.
 
 > The service worker and visit tracking only run in production builds (`npm run build && npm start`).
-
-### Moving data over from Supabase
-If you added content in an old Supabase project, copy it across once. Find the keys under Supabase → Project Settings → API (use the **service_role** key):
-
-```bash
-SUPABASE_URL=https://xxxx.supabase.co SUPABASE_SERVICE_ROLE_KEY=... npm run migrate:supabase
-```
-
-This copies profile, settings, all content tables, messages and page views. Files from Supabase Storage are downloaded into GridFS and their links (including images inside rich-text HTML) are rewritten. It's safe to re-run: existing items are skipped. Supabase Auth passwords can't be exported, so create your admin at `/admin/register`. Afterwards you can delete the Supabase project.
 
 ## Maintenance mode
 

@@ -30,7 +30,8 @@ export type FieldType =
   | "image"
   | "file"
   | "richtext"
-  | "color";
+  | "color"
+  | "location";
 
 export interface FieldConfig {
   name: string;
@@ -370,7 +371,7 @@ export const profileForm = {
     { name: "photo_url", label: "Profile photo", type: "image", folder: "profile", full: true, section: "Personal" },
     { name: "email", label: "Public email", type: "email", section: "Contact details" },
     { name: "phone", label: "Phone", type: "text", section: "Contact details" },
-    { name: "location", label: "Location", type: "text", section: "Contact details" },
+    { name: "location", label: "Location", type: "location", full: true, help: "Type it, or capture your current location to fill it in automatically.", section: "Contact details" },
     { name: "website_url", label: "Website", type: "url", section: "Contact details" },
     { name: "available", label: "Available for work", type: "switch", full: true, section: "Contact details" },
     { name: "cv_url", label: "CV / Résumé file (PDF)", type: "file", folder: "cv", accept: "application/pdf,.doc,.docx", full: true, section: "Resume", help: "Powers every “Download CV / PDF” button" },

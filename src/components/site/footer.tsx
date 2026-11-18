@@ -110,26 +110,57 @@ export function Footer({ profile, siteTitle }: { profile: Profile; siteTitle: st
               </a>
             </li>
           ))}
-          {/* Admin entry point — /admin is protected by login (middleware + server checks). */}
+          {socials.length > 0 && (
+            <li className="hidden sm:block">
+              <Link href="/contact" className="mx-1 inline-flex items-center gap-0.5 text-xs text-muted-foreground transition-colors hover:text-foreground">
+                Say hello <ArrowUpRight className="h-3 w-3" />
+              </Link>
+            </li>
+          )}
+          {/* Admin entry point — invisible until hovered/focused. /admin is protected by login (middleware + server checks). */}
           <li>
             <Link
               href="/admin"
               aria-label="Admin panel"
               title="Admin panel — sign in to manage the website"
-              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-card/50 px-3.5 text-xs font-medium text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/10 hover:text-primary"
+              className="group/admin inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-card/50 pl-1.5 pr-3.5 text-xs font-medium text-muted-foreground opacity-0 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/10 hover:text-primary hover:opacity-100 focus-visible:opacity-100"
             >
-              <Mail className="h-4 w-4" /> Admin
+              <AdminMark /> Admin
             </Link>
           </li>
-          {socials.length > 0 && (
-            <li className="hidden sm:block">
-              <Link href="/contact" className="ml-1 inline-flex items-center gap-0.5 text-xs text-muted-foreground transition-colors hover:text-foreground">
-                Say hello <ArrowUpRight className="h-3 w-3" />
-              </Link>
-            </li>
-          )}
         </ul>
       </div>
     </footer>
+  );
+}
+
+/** Admin logo: a gradient shield with a keyhole in a small glowing badge. The keyhole lights up on hover. */
+function AdminMark() {
+  return (
+    <span
+      aria-hidden
+      className="grid h-6 w-6 place-items-center rounded-full bg-[linear-gradient(135deg,#c4b5fd_0%,#8b5cf6_45%,#3b82f6_100%)] p-px shadow-[0_0_12px_-3px_rgba(124,92,255,.8)] transition-shadow duration-300 group-hover/admin:shadow-[0_0_16px_-2px_rgba(124,92,255,1)]"
+    >
+      <span className="grid h-full w-full place-items-center rounded-full bg-[#0b0b14]">
+        <svg viewBox="0 0 16 16" className="h-3.5 w-3.5 transition-transform duration-500 group-hover/admin:scale-110">
+          <defs>
+            <linearGradient id="admin-mark-g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stopColor="#c4b5fd" />
+              <stop offset="1" stopColor="#60a5fa" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M8 1.2 13.2 3.1v4.1c0 3.2-2.2 5.9-5.2 7-3-1.1-5.2-3.8-5.2-7V3.1Z"
+            fill="url(#admin-mark-g)"
+            fillOpacity=".16"
+            stroke="url(#admin-mark-g)"
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          <circle cx="8" cy="6.6" r="1.45" fill="#c4b5fd" className="transition-colors duration-300 group-hover/admin:fill-[#38bdf8]" />
+          <path d="M7.35 7.6h1.3l.35 2.6H7Z" fill="#c4b5fd" className="transition-colors duration-300 group-hover/admin:fill-[#38bdf8]" />
+        </svg>
+      </span>
+    </span>
   );
 }
